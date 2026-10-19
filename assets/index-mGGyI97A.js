@@ -116,6 +116,98 @@ const bM = ft.venue.shareUrl || `https://www.google.com/maps/dir/?api=1&destinat
 
 const Zc = [0.65, 0, 0.35, 1];
 
+// Icons defined BEFORE usage
+const LM = n => n.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(),
+  _M = n => n.replace(/^([A-Z])|[\s-_]+(\w)/g, (a, l, o) => (o ? o.toUpperCase() : l.toLowerCase())),
+  f0 = n => {
+    const a = _M(n);
+    return a.charAt(0).toUpperCase() + a.slice(1);
+  },
+  R1 = (...n) => n.filter((a, l, o) => !!a && a.trim() !== "" && o.indexOf(a) === l).join(" ").trim(),
+  jM = n => {
+    for (const a in n) if (a.startsWith("aria-") || a === "role" || a === "title") return !0;
+  };
+
+var BM = {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 24,
+  height: 24,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+};
+
+const HM = E.forwardRef(
+  (
+    {
+      color: n = "currentColor",
+      size: a = 24,
+      strokeWidth: l = 2,
+      absoluteStrokeWidth: o,
+      className: u = "",
+      children: f,
+      iconNode: h,
+      ...d
+    },
+    y
+  ) =>
+    E.createElement(
+      "svg",
+      {
+        ref: y,
+        ...BM,
+        width: a,
+        height: a,
+        stroke: n,
+        strokeWidth: o ? (Number(l) * 24) / Number(a) : l,
+        className: R1("lucide", u),
+        ...(!f && !jM(d) && { "aria-hidden": "true" }),
+        ...d
+      },
+      [...h.map(([p, g]) => E.createElement(p, g)), ...(Array.isArray(f) ? f : [f])]
+    )
+);
+
+const mh = (n, a) => {
+  const l = E.forwardRef(({ className: o, ...u }, f) =>
+    E.createElement(HM, {
+      ref: f,
+      iconNode: a,
+      className: R1(`lucide-${LM(f0(n))}`, `lucide-${n}`, o),
+      ...u
+    })
+  );
+  return (l.displayName = f0(n)), l;
+};
+
+const UM = [
+  ["path", { d: "M16 19h6", key: "xwg31i" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["path", { d: "M19 16v6", key: "tddt3s" }],
+  ["path", { d: "M21 12.598V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8.5", key: "1glfrc" }],
+  ["path", { d: "M3 10h18", key: "8toen8" }],
+  ["path", { d: "M8 2v4", key: "1cmpym" }]
+];
+const h0 = mh("calendar-plus", UM);
+
+const YM = [
+  [
+    "path",
+    {
+      d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
+      key: "1r0f0z"
+    }
+  ],
+  ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
+];
+const qM = mh("map-pin", YM);
+
+const GM = [["polygon", { points: "3 11 22 2 13 21 11 13 3 11", key: "1ltx0t" }]];
+const XM = mh("navigation", GM);
+
 function TM({ onOpening: n, onOpened: a }) {
   const [l, o] = E.useState(!1),
     u = () => {
@@ -128,7 +220,8 @@ function TM({ onOpening: n, onOpened: a }) {
       }
     };
   return z.jsxs(st.div, {
-    className: "fixed inset-0 z-50 overflow-hidden",
+    onClick: u,
+    className: "fixed inset-0 z-50 overflow-hidden cursor-pointer",
     exit: { opacity: 0 },
     transition: { duration: 0.45 },
     children: [
@@ -136,7 +229,7 @@ function TM({ onOpening: n, onOpened: a }) {
         className: "absolute inset-y-0 left-0 w-1/2 overflow-hidden",
         style: { background: "linear-gradient(110deg, #efe6d8 0%, #f6f0e6 45%, #ebe2d4 100%)" },
         animate: l ? { x: "-105%" } : { x: 0 },
-        transition: { duration: 1.35, delay: 0.25, ease: Zc },
+        transition: { duration: 1.35, delay: 0.15, ease: Zc },
         children: z.jsx("div", {
           className: "absolute inset-0 opacity-40 mix-blend-multiply",
           style: {
@@ -148,7 +241,7 @@ function TM({ onOpening: n, onOpened: a }) {
         className: "absolute inset-y-0 right-0 w-1/2 overflow-hidden",
         style: { background: "linear-gradient(250deg, #efe6d8 0%, #f6f0e6 45%, #ebe2d4 100%)" },
         animate: l ? { x: "105%" } : { x: 0 },
-        transition: { duration: 1.35, delay: 0.25, ease: Zc },
+        transition: { duration: 1.35, delay: 0.15, ease: Zc },
         onAnimationComplete: () => l && a(),
         children: z.jsx("div", {
           className: "absolute inset-0 opacity-40 mix-blend-multiply",
@@ -165,43 +258,29 @@ function TM({ onOpening: n, onOpened: a }) {
         },
         initial: { opacity: 0, scaleX: 0.15 },
         animate: l ? { opacity: [0, 1, 0], scaleX: [0.15, 1.4, 2.4] } : { opacity: 0.35, scaleX: 0.4 },
-        transition: { duration: 1.35, delay: 0.25, ease: Zc }
+        transition: { duration: 1.35, delay: 0.15, ease: Zc }
       }),
       z.jsxs(st.div, {
-        className: "absolute inset-0 z-10 flex flex-col items-center justify-center px-8 text-center",
+        className: "absolute inset-0 z-10 flex flex-col items-center justify-center px-8 text-center pointer-events-auto",
         animate: l ? { opacity: 0, scale: 0.96, filter: "blur(6px)" } : { opacity: 1, scale: 1, filter: "blur(0px)" },
         transition: { duration: 0.5 },
         children: [
-          z.jsx(st.p, {
-            initial: { opacity: 0, y: 10 },
-            animate: { opacity: 1, y: 0 },
-            transition: { delay: 0.15, duration: 0.7 },
+          z.jsx("p", {
             className: "font-display text-[11px] uppercase tracking-[0.42em] text-[#6e6256]",
             children: "Wedding Invitation · Groom Side"
           }),
-          z.jsxs(st.h2, {
-            initial: { opacity: 0, y: 18 },
-            animate: { opacity: 1, y: 0 },
-            transition: { delay: 0.28, duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+          z.jsxs("h2", {
             className: "mt-4 font-script text-5xl text-[#1a1814] sm:text-6xl",
             children: [ft.groom, " & ", ft.bride]
           }),
-          z.jsx(st.p, {
-            initial: { opacity: 0 },
-            animate: { opacity: 1 },
-            transition: { delay: 0.5, duration: 0.7 },
+          z.jsx("p", {
             className: "mt-3 max-w-xs font-display text-base italic leading-relaxed text-[#5c5146]",
             children: "Open gently — celebrations await"
           }),
-          z.jsxs(st.button, {
+          z.jsxs("button", {
             type: "button",
-            onClick: u,
-            initial: { opacity: 0, y: 12 },
-            animate: { opacity: 1, y: 0 },
-            transition: { delay: 0.65, duration: 0.7 },
-            whileHover: { scale: 1.04, y: -2 },
-            whileTap: { scale: 0.97 },
-            className: "group mt-10 inline-flex items-center gap-3 rounded-full border border-[#1a1814]/15 bg-[#1a1814] px-7 py-3.5 text-[11px] uppercase tracking-[0.28em] text-[#f6f0e6] shadow-[0_16px_40px_rgba(40,30,20,0.18)] transition-[box-shadow] duration-500 ease-out hover:shadow-[0_22px_55px_rgba(40,30,20,0.3)]",
+            onClick: (e) => { e.stopPropagation(); u(); },
+            className: "group mt-10 inline-flex items-center gap-3 rounded-full border border-[#1a1814]/15 bg-[#1a1814] px-7 py-3.5 text-[11px] uppercase tracking-[0.28em] text-[#f6f0e6] shadow-[0_16px_40px_rgba(40,30,20,0.18)] transition-all duration-500 ease-out hover:scale-105 hover:shadow-[0_22px_55px_rgba(40,30,20,0.3)]",
             children: [
               "Open invitation",
               z.jsx(st.span, {
@@ -227,7 +306,7 @@ function wM(n = !0) {
     [f, h] = E.useState(EM);
   return (
     E.useEffect(() => {
-      if (!n || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (!n || (typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
       const y = w => {
           (a.current.x = (w.clientX / window.innerWidth) * 2 - 1),
             (a.current.y = (w.clientY / window.innerHeight) * 2 - 1);
@@ -295,7 +374,7 @@ function hh(n = 8) {
   return (
     E.useEffect(() => {
       const u = a.current;
-      if (!u || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (!u || (typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
       let h = 0,
         d = 0,
         y = 0,
@@ -575,52 +654,35 @@ function RM() {
           style: S.title,
           children: [
             z.jsx(st.p, {
-              initial: { opacity: 0, y: 12, letterSpacing: "0.55em" },
-              animate: { opacity: 1, y: 0, letterSpacing: "0.42em" },
-              transition: { delay: 0.2, duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-              className: "font-display text-[11px] uppercase text-[#6e6256]",
+              className: "font-display text-[11px] uppercase text-[#6e6256] tracking-[0.42em]",
               children: "Together with their families · Groom Side"
             }),
             z.jsxs(st.h1, {
-              initial: { opacity: 0, y: 22 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: 0.4, duration: 1.05, ease: [0.22, 1, 0.36, 1] },
               className: "mt-4 font-script leading-[0.95] text-[#1a1814]",
               style: { fontSize: "clamp(3.4rem, 14vw, 5.6rem)" },
               children: [
-                z.jsx(st.span, {
+                z.jsx("span", {
                   className: "inline-block",
-                  whileHover: { y: -3, transition: { duration: 0.35 } },
                   children: ft.groom
                 }),
                 z.jsx("span", {
                   className: "mx-2 inline-block font-script text-[0.55em] text-[#8a7a68]",
                   children: "&"
                 }),
-                z.jsx(st.span, {
+                z.jsx("span", {
                   className: "inline-block",
-                  whileHover: { y: -3, transition: { duration: 0.35 } },
                   children: ft.bride
                 })
               ]
             }),
-            z.jsx(st.div, {
-              initial: { scaleX: 0, opacity: 0 },
-              animate: { scaleX: 1, opacity: 1 },
-              transition: { delay: 0.75, duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+            z.jsx("div", {
               className: "mt-5 h-px w-28 origin-center bg-gradient-to-r from-transparent via-[#1a1814]/35 to-transparent"
             }),
-            z.jsx(st.p, {
-              initial: { opacity: 0, y: 10 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: 0.9, duration: 0.9 },
+            z.jsx("p", {
               className: "mt-4 font-display text-lg tracking-wide text-[#3d342c] sm:text-xl",
               children: ft.dateLabel
             }),
-            z.jsx(st.p, {
-              initial: { opacity: 0 },
-              animate: { opacity: 1 },
-              transition: { delay: 1.05, duration: 0.8 },
+            z.jsx("p", {
               className: "mt-1 text-[11px] uppercase tracking-[0.32em] text-[#7a6d60]",
               children: `${ft.destination} · ${ft.timeLabel}`
             })
@@ -629,9 +691,6 @@ function RM() {
       }),
       z.jsxs(st.button, {
         type: "button",
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        transition: { delay: 1.6 },
         onClick: () => window.scrollTo({ top: window.innerHeight * 0.85, behavior: "smooth" }),
         className: "relative z-10 mb-8 flex flex-col items-center gap-2 text-[#7a6d60] transition-colors hover:text-[#1a1814]",
         "aria-label": "Scroll to invitation details",
@@ -697,19 +756,11 @@ function DM() {
       z.jsxs(zn, {
         className: "mx-auto flex max-w-lg flex-col items-center text-center",
         children: [
-          z.jsx(st.p, {
-            initial: { opacity: 0, y: 12 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: !0 },
-            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+          z.jsx("p", {
             className: "font-display text-lg tracking-[0.25em] text-[#8a7a68] font-medium",
             children: ft.verse.arabic
           }),
-          z.jsx(st.div, {
-            initial: { scaleX: 0 },
-            whileInView: { scaleX: 1 },
-            viewport: { once: !0 },
-            transition: { delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+          z.jsx("div", {
             className: "mt-6 h-px w-20 origin-center bg-[#1a1814]/20"
           }),
           z.jsx(u0, {
@@ -830,10 +881,6 @@ function OM({ label: n, value: a, delay: l }) {
   return z.jsxs(st.div, {
     ref: o,
     style: u,
-    initial: { opacity: 0, y: 24 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: !0 },
-    transition: { delay: l, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
     whileHover: { y: -4 },
     className:
       "rounded-[1.35rem] bg-[rgba(26,24,20,0.03)] px-2 py-5 ring-1 ring-[rgba(26,24,20,0.08)] transition-shadow duration-500 hover:shadow-[0_18px_40px_rgba(60,45,30,0.1)]",
@@ -1053,97 +1100,6 @@ function VM() {
   });
 }
 
-const LM = n => n.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(),
-  _M = n => n.replace(/^([A-Z])|[\s-_]+(\w)/g, (a, l, o) => (o ? o.toUpperCase() : l.toLowerCase())),
-  f0 = n => {
-    const a = _M(n);
-    return a.charAt(0).toUpperCase() + a.slice(1);
-  },
-  R1 = (...n) => n.filter((a, l, o) => !!a && a.trim() !== "" && o.indexOf(a) === l).join(" ").trim(),
-  jM = n => {
-    for (const a in n) if (a.startsWith("aria-") || a === "role" || a === "title") return !0;
-  };
-
-var BM = {
-  xmlns: "http://www.w3.org/2000/svg",
-  width: 24,
-  height: 24,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2,
-  strokeLinecap: "round",
-  strokeLinejoin: "round"
-};
-
-const HM = E.forwardRef(
-  (
-    {
-      color: n = "currentColor",
-      size: a = 24,
-      strokeWidth: l = 2,
-      absoluteStrokeWidth: o,
-      className: u = "",
-      children: f,
-      iconNode: h,
-      ...d
-    },
-    y
-  ) =>
-    E.createElement(
-      "svg",
-      {
-        ref: y,
-        ...BM,
-        width: a,
-        height: a,
-        stroke: n,
-        strokeWidth: o ? (Number(l) * 24) / Number(a) : l,
-        className: R1("lucide", u),
-        ...(!f && !jM(d) && { "aria-hidden": "true" }),
-        ...d
-      },
-      [...h.map(([p, g]) => E.createElement(p, g)), ...(Array.isArray(f) ? f : [f])]
-    )
-);
-
-const mh = (n, a) => {
-  const l = E.forwardRef(({ className: o, ...u }, f) =>
-    E.createElement(HM, {
-      ref: f,
-      iconNode: a,
-      className: R1(`lucide-${LM(f0(n))}`, `lucide-${n}`, o),
-      ...u
-    })
-  );
-  return (l.displayName = f0(n)), l;
-};
-
-const UM = [
-  ["path", { d: "M16 19h6", key: "xwg31i" }],
-  ["path", { d: "M16 2v4", key: "4m81vk" }],
-  ["path", { d: "M19 16v6", key: "tddt3s" }],
-  ["path", { d: "M21 12.598V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8.5", key: "1glfrc" }],
-  ["path", { d: "M3 10h18", key: "8toen8" }],
-  ["path", { d: "M8 2v4", key: "1cmpym" }]
-];
-const h0 = mh("calendar-plus", UM);
-
-const YM = [
-  [
-    "path",
-    {
-      d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
-      key: "1r0f0z"
-    }
-  ],
-  ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
-];
-const qM = mh("map-pin", YM);
-
-const GM = [["polygon", { points: "3 11 22 2 13 21 11 13 3 11", key: "1ltx0t" }]];
-const XM = mh("navigation", GM);
-
 function kM() {
   const n = hh(5);
   return z.jsxs("section", {
@@ -1353,19 +1309,21 @@ function MusicPlayer() {
   const audioRef = E.useRef(null);
 
   E.useEffect(() => {
-    const audio = new Audio("./editable/assets/gehra_hua.mp3");
-    audio.loop = true;
-    audio.preload = "auto";
-    audioRef.current = audio;
+    try {
+      const audio = new Audio("./editable/assets/gehra_hua.mp3");
+      audio.loop = true;
+      audio.preload = "auto";
+      audioRef.current = audio;
 
-    window.__playMusic = () => {
-      audio.play().then(() => setPlaying(true)).catch(() => {});
-    };
+      window.__playMusic = () => {
+        audio.play().then(() => setPlaying(true)).catch(() => {});
+      };
 
-    return () => {
-      audio.pause();
-      audio.src = "";
-    };
+      return () => {
+        audio.pause();
+        audio.src = "";
+      };
+    } catch(e) {}
   }, []);
 
   const toggle = () => {
@@ -1409,27 +1367,30 @@ function MusicPlayer() {
 function ZM() {
   const [n, a] = E.useState("closed");
   E.useEffect(() => {
-    const l = new gM({ lerp: 0.085, smoothWheel: !0 });
-    let o = 0;
-    const u = f => {
-      l.raf(f);
+    let l;
+    try {
+      l = new gM({ lerp: 0.085, smoothWheel: !0 });
+      let o = 0;
+      const u = f => {
+        l.raf(f);
+        o = requestAnimationFrame(u);
+      };
       o = requestAnimationFrame(u);
-    };
-    return (
-      (o = requestAnimationFrame(u)),
-      () => {
+      return () => {
         cancelAnimationFrame(o);
         l.destroy();
-      }
-    );
+      };
+    } catch(e) {}
   }, []);
   E.useEffect(
-    () => (
-      (document.body.style.overflow = n === "open" ? "" : "hidden"),
-      () => {
-        document.body.style.overflow = "";
-      }
-    ),
+    () => {
+      try {
+        document.body.style.overflow = n === "open" ? "" : "hidden";
+        return () => {
+          document.body.style.overflow = "";
+        };
+      } catch(e) {}
+    },
     [n]
   );
   return z.jsxs("main", {
@@ -1464,18 +1425,11 @@ function ZM() {
 }
 
 function PM() {
-  return z.jsx(o2, {
-    children: z.jsx(N0, {
-      path: "/",
-      element: z.jsx(ZM, {})
-    })
-  });
+  return z.jsx(ZM, {});
 }
 
 ob.createRoot(document.getElementById("root")).render(
   z.jsx(E.StrictMode, {
-    children: z.jsx(O2, {
-      children: z.jsx(PM, {})
-    })
+    children: z.jsx(PM, {})
   })
 );
