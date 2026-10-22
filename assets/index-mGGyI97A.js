@@ -33,16 +33,19 @@ const ft = {
   brideParents: _WD_COUPLE.brideParents ?? "Daughter of Mr Nitin Morabia & Mrs Jyoti Morabia",
   groomParents: _WD_COUPLE.groomParents ?? "Son of Mr Amul Mehta & Mrs Sharvari Mehta",
   side: _WD_COUPLE.side ?? "Groom Side",
-  sideTitle: _WD_COUPLE.sideTitle ?? "Dr Shivam Mehta & Family",
+  sideTitle: _WD_COUPLE.sideTitle ?? "Mehta Family",
+  heroTagline: _WD_COUPLE.heroTagline ?? "Mehta family welcomes you to the wedding reception of",
   hashtag: _WD_COUPLE.hashtag ?? "#ShivamWedsKrina",
   monogram: _WD_COUPLE.monogram ?? "S · K",
   family: _WD_FAMILY,
   music: _WD_MUSIC,
-  dateISO: _WD_WEDDING.dateISO ?? "2026-11-22T18:15:00+05:30",
-  dateLabel: _WD_WEDDING.dateLabel ?? "20 – 22 November 2026",
-  weddingDayLabel: _WD_WEDDING.weddingDayLabel ?? "Sunday, 22nd November 2026",
-  timeLabel: _WD_WEDDING.timeLabel ?? "Hastmelap at 6:15 PM",
+  dateISO: _WD_WEDDING.dateISO ?? "2026-11-28T19:00:00+05:30",
+  dateLabel: _WD_WEDDING.dateLabel ?? "Saturday, 28th November 2026",
+  weddingDayLabel: _WD_WEDDING.weddingDayLabel ?? "Saturday, 28th November 2026",
+  timeLabel: _WD_WEDDING.timeLabel ?? "7:00 PM onwards",
   destination: _WD_WEDDING.destination ?? "Surat, Gujarat",
+  eventsTitle: _WDATA.eventsTitle ?? "The Royal Reception",
+  eventsBadge: _WDATA.eventsBadge ?? "A Toast to Forever 🍻",
   venue: {
     name: _WD_VENUE.name ?? "Bai Dayakor Hindu Aarogya Bhavan",
     address: _WD_VENUE.address ?? "Dumas Road, Sultanabad, Dumas, Surat, Gujarat 395007",
@@ -654,8 +657,8 @@ function RM() {
           style: S.title,
           children: [
             z.jsx(st.p, {
-              className: "font-display text-[11px] uppercase text-[#6e6256] tracking-[0.42em]",
-              children: "Together with their families · Groom Side"
+              className: "font-display text-[11px] uppercase text-[#6e6256] tracking-[0.28em] max-w-sm mx-auto leading-relaxed",
+              children: ft.heroTagline || "Mehta family welcomes you to the wedding reception of"
             }),
             z.jsxs(st.h1, {
               className: "mt-4 font-script leading-[0.95] text-[#1a1814]",
@@ -778,9 +781,25 @@ function DM() {
               )
             )
           }),
+          // Family Blessings (Grandparents) - positioned ABOVE couple names as requested
+          ft.family && ft.family.blessings && z.jsx(u0, {
+            className: "mt-10 flex flex-col gap-4 w-full",
+            stagger: 0.12,
+            children: [
+              z.jsxs(st.div, {
+                variants: Pc,
+                className: "rounded-2xl border border-[#1a1814]/10 bg-[#fffaf4]/70 p-5 shadow-[0_8px_24px_rgba(40,30,20,0.03)]",
+                children: [
+                  z.jsx("p", { className: "text-[10px] uppercase tracking-[0.3em] text-[#8a7a68]", children: ft.family.blessings.badge }),
+                  z.jsx("p", { className: "mt-2 font-display text-xl text-[#1a1814]", children: ft.family.blessings.names }),
+                  z.jsx("p", { className: "mt-1 text-[11px] uppercase tracking-[0.18em] text-[#7a6d60]", children: ft.family.blessings.relation })
+                ]
+              })
+            ]
+          }),
           // Couple & Lineage Cards
           z.jsxs(u0, {
-            className: "mt-12 flex flex-col gap-4 w-full",
+            className: "mt-8 flex flex-col gap-4 w-full",
             stagger: 0.12,
             children: [
               z.jsxs(st.div, {
@@ -798,41 +817,6 @@ function DM() {
                 children: [
                   z.jsx("p", { className: "font-script text-3xl sm:text-4xl text-[#1a1814]", children: ft.brideFull }),
                   z.jsx("p", { className: "mt-1.5 text-[11px] uppercase tracking-[0.24em] text-[#7a6d60]", children: ft.brideParents })
-                ]
-              })
-            ]
-          }),
-          // Family Blessings & Love Section
-          ft.family && z.jsxs(u0, {
-            className: "mt-10 flex flex-col gap-4 w-full",
-            stagger: 0.12,
-            children: [
-              ft.family.blessings && z.jsxs(st.div, {
-                variants: Pc,
-                className: "rounded-2xl border border-[#1a1814]/10 bg-[#fffaf4]/70 p-5 shadow-[0_8px_24px_rgba(40,30,20,0.03)]",
-                children: [
-                  z.jsx("p", { className: "text-[10px] uppercase tracking-[0.3em] text-[#8a7a68]", children: ft.family.blessings.badge }),
-                  z.jsx("p", { className: "mt-2 font-display text-xl text-[#1a1814]", children: ft.family.blessings.names }),
-                  z.jsx("p", { className: "mt-1 text-[11px] uppercase tracking-[0.18em] text-[#7a6d60]", children: ft.family.blessings.relation })
-                ]
-              }),
-              ft.family.withLove && z.jsxs(st.div, {
-                variants: Pc,
-                className: "rounded-2xl border border-[#1a1814]/10 bg-[#fffaf4]/70 p-5 shadow-[0_8px_24px_rgba(40,30,20,0.03)]",
-                children: [
-                  z.jsx("p", { className: "text-[10px] uppercase tracking-[0.3em] text-[#8a7a68]", children: ft.family.withLove.badge }),
-                  z.jsx("p", { className: "mt-2 font-display text-xl text-[#1a1814]", children: ft.family.withLove.names }),
-                  z.jsx("p", { className: "mt-1 text-[11px] uppercase tracking-[0.18em] text-[#7a6d60]", children: ft.family.withLove.relation })
-                ]
-              }),
-              ft.family.littleOnes && z.jsxs(st.div, {
-                variants: Pc,
-                className: "rounded-2xl border border-[#1a1814]/10 bg-[#fffaf4]/70 p-5 shadow-[0_8px_24px_rgba(40,30,20,0.03)]",
-                children: [
-                  z.jsx("p", { className: "text-[10px] uppercase tracking-[0.3em] text-[#8a7a68]", children: ft.family.littleOnes.badge }),
-                  z.jsx("p", { className: "mt-2 font-display text-xl text-[#1a1814]", children: ft.family.littleOnes.names }),
-                  z.jsx("p", { className: "mt-1 text-[11px] uppercase tracking-[0.18em] text-[#7a6d60]", children: ft.family.littleOnes.relation }),
-                  ft.family.littleOnes.note && z.jsx("p", { className: "mt-2 font-display italic text-sm text-[#8a7a68]", children: ft.family.littleOnes.note })
                 ]
               })
             ]
@@ -953,11 +937,11 @@ function VM() {
         children: [
           z.jsx("span", {
             className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]",
-            children: "Ceremonies & Festivities"
+            children: ft.eventsBadge || "Ceremonies & Festivities"
           }),
           z.jsx("h2", {
             className: "font-script text-5xl text-[#1a1814] sm:text-6xl",
-            children: "Wedding Celebrations"
+            children: ft.eventsTitle || "Wedding Celebrations"
           }),
           z.jsx("div", {
             className: "h-px w-24 bg-gradient-to-r from-transparent via-[#1a1814]/25 to-transparent"
@@ -1310,7 +1294,7 @@ function MusicPlayer() {
 
   E.useEffect(() => {
     try {
-      const audio = new Audio("./editable/assets/gehra_hua.mp3");
+      const audio = new Audio((ft.music && ft.music.src) || "./editable/assets/gehra_hua.mp3");
       audio.loop = true;
       audio.preload = "auto";
       audioRef.current = audio;
