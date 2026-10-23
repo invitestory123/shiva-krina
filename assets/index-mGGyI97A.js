@@ -69,7 +69,9 @@ const ft = {
     shadows: _WD_IMAGES.shadows ?? "./editable/assets/layer-02-shadows.png",
     groom: _WD_IMAGES.groom ?? "./editable/assets/layer-03-groom.png",
     bride: _WD_IMAGES.bride ?? "./editable/assets/layer-04-bride.png",
-    bouquet: _WD_IMAGES.bouquet ?? "./editable/assets/layer-05-bouquet.png"
+    bouquet: _WD_IMAGES.bouquet ?? "./editable/assets/layer-05-bouquet.png",
+    monogramLogo: _WD_IMAGES.monogramLogo ?? "./editable/assets/ks-monogram.png",
+    lastPage: _WD_IMAGES.lastPage ?? "./editable/assets/last-page.png"
   }
 };
 
@@ -520,7 +522,7 @@ function RM() {
       }),
       z.jsx(MM, { x: a.x, y: a.y }),
       z.jsxs(st.div, {
-        className: "pointer-events-none absolute inset-x-0 bottom-0 top-[16%] z-[1] mx-auto w-full max-w-[440px] sm:max-w-[480px]",
+        className: "pointer-events-none absolute inset-x-0 bottom-0 top-[34%] sm:top-[28%] z-[1] mx-auto w-full max-w-[440px] sm:max-w-[480px]",
         style: { y: f, scale: h, opacity: d },
         children: [
           z.jsx("div", {
@@ -650,19 +652,19 @@ function RM() {
         className: "pointer-events-none absolute inset-x-0 top-0 z-[5] h-36 bg-gradient-to-b from-[#f3ede3] to-transparent"
       }),
       z.jsx(st.div, {
-        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(10svh,5.5rem)] text-center",
+        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(7svh,3.8rem)] text-center",
         style: { y, opacity: p },
         children: z.jsxs("div", {
           className: "flex w-full flex-col items-center will-change-transform",
           style: S.title,
           children: [
             z.jsx(st.p, {
-              className: "font-display text-[11px] uppercase text-[#6e6256] tracking-[0.28em] max-w-sm mx-auto leading-relaxed",
+              className: "font-display text-[10px] sm:text-[11px] uppercase text-[#6e6256] tracking-[0.26em] max-w-sm mx-auto leading-relaxed",
               children: ft.heroTagline || "Mehta family welcomes you to the wedding reception of"
             }),
             z.jsxs(st.h1, {
-              className: "mt-4 font-script leading-[0.95] text-[#1a1814]",
-              style: { fontSize: "clamp(3.4rem, 14vw, 5.6rem)" },
+              className: "mt-3 font-script leading-[0.95] text-[#1a1814]",
+              style: { fontSize: "clamp(3rem, 12vw, 5rem)" },
               children: [
                 z.jsx("span", {
                   className: "inline-block",
@@ -679,14 +681,14 @@ function RM() {
               ]
             }),
             z.jsx("div", {
-              className: "mt-5 h-px w-28 origin-center bg-gradient-to-r from-transparent via-[#1a1814]/35 to-transparent"
+              className: "mt-4 h-px w-24 origin-center bg-gradient-to-r from-transparent via-[#1a1814]/35 to-transparent"
             }),
             z.jsx("p", {
-              className: "mt-4 font-display text-lg tracking-wide text-[#3d342c] sm:text-xl",
+              className: "mt-3 font-display text-base tracking-wide text-[#3d342c] sm:text-lg",
               children: ft.dateLabel
             }),
             z.jsx("p", {
-              className: "mt-1 text-[11px] uppercase tracking-[0.32em] text-[#7a6d60]",
+              className: "mt-1 text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-[#7a6d60]",
               children: `${ft.destination} · ${ft.timeLabel}`
             })
           ]
@@ -781,20 +783,15 @@ function DM() {
               )
             )
           }),
-          // Family Blessings (Grandparents) - positioned ABOVE couple names as requested
-          ft.family && ft.family.blessings && z.jsx(u0, {
-            className: "mt-10 flex flex-col gap-4 w-full",
-            stagger: 0.12,
+          // Family Blessings (Grandparents) - No box, uniform script font and styling
+          ft.family && ft.family.blessings && z.jsxs(st.div, {
+            variants: Pc,
+            className: "mt-10 flex flex-col items-center text-center w-full px-2",
             children: [
-              z.jsxs(st.div, {
-                variants: Pc,
-                className: "rounded-2xl border border-[#1a1814]/10 bg-[#fffaf4]/70 p-5 shadow-[0_8px_24px_rgba(40,30,20,0.03)]",
-                children: [
-                  z.jsx("p", { className: "text-[10px] uppercase tracking-[0.3em] text-[#8a7a68]", children: ft.family.blessings.badge }),
-                  z.jsx("p", { className: "mt-2 font-display text-xl text-[#1a1814]", children: ft.family.blessings.names }),
-                  z.jsx("p", { className: "mt-1 text-[11px] uppercase tracking-[0.18em] text-[#7a6d60]", children: ft.family.blessings.relation })
-                ]
-              })
+              z.jsx("p", { className: "text-[10px] uppercase tracking-[0.3em] text-[#8a7a68]", children: ft.family.blessings.badge }),
+              z.jsx("p", { className: "mt-2 font-script text-3xl sm:text-4xl text-[#1a1814]", children: ft.family.blessings.names }),
+              z.jsx("p", { className: "mt-1.5 text-[11px] uppercase tracking-[0.24em] text-[#7a6d60]", children: ft.family.blessings.relation }),
+              z.jsx("div", { className: "mt-6 h-px w-20 bg-gradient-to-r from-transparent via-[#1a1814]/20 to-transparent" })
             ]
           }),
           // Couple & Lineage Cards
@@ -912,6 +909,18 @@ function NM() {
           children: o.map((u, f) =>
             z.jsx(OM, { label: u.label, value: u.value, delay: f * 0.07 }, u.label)
           )
+        }),
+        z.jsx(st.div, {
+          initial: { opacity: 0, scale: 0.9 },
+          whileInView: { opacity: 1, scale: 1 },
+          viewport: { once: !0 },
+          transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+          className: "mt-12 flex justify-center",
+          children: z.jsx("img", {
+            src: (ft.images && ft.images.monogramLogo) || "./editable/assets/ks-monogram.png",
+            alt: "KS Monogram",
+            className: "h-auto w-32 sm:w-40 max-w-[180px] object-contain drop-shadow-[0_8px_20px_rgba(205,162,74,0.18)]"
+          })
         })
       ]
     })
@@ -1212,66 +1221,48 @@ function KM() {
       } catch {}
     };
   return z.jsxs("footer", {
-    className: "relative overflow-hidden px-6 pb-16 pt-24",
+    className: "relative overflow-hidden bg-[#f3ede3] px-4 pb-14 pt-10 sm:px-6 sm:pb-20",
     children: [
       z.jsx("div", {
         className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1a1814]/12 to-transparent"
       }),
-      z.jsx(dh, {
-        speed: 0.15,
-        className: "pointer-events-none absolute inset-x-0 bottom-0 top-8 opacity-[0.08]",
-        children: z.jsx("img", {
-          src: ft.images.couple,
-          alt: "",
-          className: "mx-auto h-full max-w-md object-contain object-bottom"
-        })
-      }),
-      z.jsx("div", {
-        className: "relative z-10 mb-10 overflow-hidden py-3",
-        children: z.jsx("div", {
-          className: "flex w-max whitespace-nowrap",
-          style: { animation: "marquee 28s linear infinite" },
-          children: [0, 1].map(o =>
-            z.jsx(
-              "span",
-              {
-                className: "font-display px-4 text-sm uppercase tracking-[0.36em] text-[#8a7a68]",
-                children: Array(5).fill(`${ft.hashtag}  ·  ${ft.dateLabel}  ·  `).join("")
-              },
-              o
-            )
-          )
-        })
-      }),
-      z.jsxs(zn, {
-        className: "relative z-10 mx-auto flex max-w-sm flex-col items-center gap-5 text-center",
+      z.jsxs("div", {
+        className: "relative z-10 mx-auto flex max-w-md flex-col items-center",
         children: [
-          z.jsx("p", {
-            className: "font-script text-4xl leading-snug text-[#1a1814] sm:text-5xl",
-            children: ft.footer.message || "We can't wait to celebrate with you"
+          z.jsx(st.div, {
+            initial: { opacity: 0, y: 24, scale: 0.98 },
+            whileInView: { opacity: 1, y: 0, scale: 1 },
+            viewport: { once: !0 },
+            transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+            className: "w-full overflow-hidden rounded-[2rem] shadow-[0_20px_50px_rgba(40,30,20,0.14)] ring-1 ring-[rgba(26,24,20,0.08)] bg-[#fffaf4]",
+            children: z.jsx("img", {
+              src: (ft.images && ft.images.lastPage) || "./editable/assets/last-page.png",
+              alt: "With love — Mrs Tanvi Patel, Mr Parthav Patel, Raavika Patel, Aarush Patel",
+              className: "w-full h-auto object-cover block"
+            })
           }),
-          z.jsx("p", {
-            className: "text-[11px] uppercase tracking-[0.32em] text-[#7a6d60]",
-            children: ft.footer.signature || "With love, Dr Shivam Mehta & Family"
-          }),
-          z.jsx("div", { className: "h-px w-28 bg-[#1a1814]/15" }),
-          z.jsx(st.button, {
-            type: "button",
-            onClick: l,
-            whileTap: { scale: 0.96 },
-            className: `rounded-full border px-5 py-2 text-[10px] tracking-[0.2em] transition-colors duration-500 ${
-              n
-                ? "border-[#1a1814]/35 bg-[#1a1814]/5 text-[#1a1814]"
-                : "border-[#1a1814]/12 text-[#7a6d60] hover:border-[#1a1814]/25 hover:text-[#2c261f]"
-            }`,
-            children: n ? "Copied ✓" : `${ft.hashtag} · tap to copy`
-          }),
-          z.jsx("a", {
-            href: "https://www.instagram.com/invitestory.in/",
-            target: "_blank",
-            rel: "noreferrer",
-            className: "mt-2 text-[10px] uppercase tracking-[0.35em] text-[#8a7a68] transition-colors hover:text-[#1a1814]",
-            children: "Follow @invitestory.in on Instagram"
+          z.jsxs("div", {
+            className: "mt-8 flex flex-col items-center gap-3",
+            children: [
+              z.jsx(st.button, {
+                type: "button",
+                onClick: l,
+                whileTap: { scale: 0.96 },
+                className: `rounded-full border px-5 py-2 text-[10px] tracking-[0.2em] transition-colors duration-500 ${
+                  n
+                    ? "border-[#1a1814]/35 bg-[#1a1814]/5 text-[#1a1814]"
+                    : "border-[#1a1814]/12 text-[#7a6d60] hover:border-[#1a1814]/25 hover:text-[#2c261f]"
+                }`,
+                children: n ? "Copied ✓" : `${ft.hashtag} · tap to copy`
+              }),
+              z.jsx("a", {
+                href: "https://www.instagram.com/invitestory.in/",
+                target: "_blank",
+                rel: "noreferrer",
+                className: "mt-1 text-[10px] uppercase tracking-[0.35em] text-[#8a7a68] transition-colors hover:text-[#1a1814]",
+                children: "Follow @invitestory.in on Instagram"
+              })
+            ]
           })
         ]
       })

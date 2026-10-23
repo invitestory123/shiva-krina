@@ -102,5 +102,7 @@ window.WEDDING_DATA = {
     bride: "./editable/assets/layer-04-bride.png",
     bouquet: "./editable/assets/layer-05-bouquet.png",
     heroComposite: "./editable/assets/hero-composite.jpg",
+    monogramLogo: "./editable/assets/ks-monogram.png",
+    lastPage: "./editable/assets/last-page.png",
   },
 };
