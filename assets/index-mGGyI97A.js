@@ -442,7 +442,7 @@ function AM({ count: n = 14 }) {
     [n]
   );
   return z.jsx("div", {
-    className: "pointer-events-none fixed inset-0 z-[8] overflow-hidden",
+    className: "pointer-events-none fixed inset-0 z-[35] overflow-hidden",
     "aria-hidden": !0,
     children: a.map(l =>
       z.jsx(
@@ -515,7 +515,7 @@ function RM() {
 
   return z.jsxs("section", {
     ref: n,
-    className: "relative flex min-h-[115dvh] flex-col overflow-hidden",
+    className: "relative flex min-h-svh h-svh sm:min-h-[100dvh] sm:h-[100dvh] flex-col justify-between overflow-hidden",
     onPointerEnter: () => o(!0),
     onPointerLeave: () => o(!1),
     children: [
@@ -662,7 +662,7 @@ function RM() {
         className: "pointer-events-none absolute inset-x-0 top-0 z-[5] h-36 bg-gradient-to-b from-[#f3ede3] to-transparent"
       }),
       z.jsx(st.div, {
-        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(10svh,5.5rem)] text-center",
+        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(7svh,3.8rem)] text-center",
         style: { y, opacity: p },
         children: z.jsxs("div", {
           className: "flex w-full flex-col items-center will-change-transform",
@@ -710,8 +710,8 @@ function RM() {
       }),
       z.jsxs(st.button, {
         type: "button",
-        onClick: () => window.scrollTo({ top: window.innerHeight * 0.9, behavior: "smooth" }),
-        className: "relative z-10 mb-6 sm:mb-8 flex flex-col items-center gap-1.5 transition-transform duration-300 hover:scale-105 active:scale-95",
+        onClick: () => window.scrollTo({ top: window.innerHeight * 0.95, behavior: "smooth" }),
+        className: "relative z-20 mb-8 sm:mb-10 pb-2 flex flex-col items-center gap-1.5 transition-transform duration-300 hover:scale-105 active:scale-95",
         "aria-label": "Scroll down to explore invitation",
         children: [
           z.jsxs("span", {
@@ -949,17 +949,22 @@ function VM() {
       }),
       z.jsx("div", {
         className: "relative z-10 mx-auto max-w-md flex flex-col items-center",
-        children: z.jsx(st.div, {
+        children: z.jsxs(st.div, {
           initial: { opacity: 0, y: 24, scale: 0.98 },
           whileInView: { opacity: 1, y: 0, scale: 1 },
           viewport: { once: !0 },
           transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-          className: "w-full overflow-hidden rounded-[2rem] shadow-[0_20px_50px_rgba(40,30,20,0.14)] ring-1 ring-[rgba(26,24,20,0.08)] bg-[#fffaf4]",
-          children: z.jsx("img", {
-            src: (ft.images && ft.images.receptionCard) || "./editable/assets/reception-card.png",
-            alt: "The Royal Reception — Saturday, 28 November 2026",
-            className: "w-full h-auto object-cover block"
-          })
+          className: "relative w-full overflow-hidden rounded-3xl border border-[#1a1814]/12 bg-[#f3ede3] shadow-[0_16px_45px_rgba(40,30,20,0.06)] p-2 sm:p-3",
+          children: [
+            z.jsx("div", {
+              className: "pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-[#1a1814]/8"
+            }),
+            z.jsx("img", {
+              src: (ft.images && ft.images.receptionCard) || "./editable/assets/reception-card.png",
+              alt: "The Royal Reception — Saturday, 28 November 2026",
+              className: "w-full h-auto object-cover block rounded-2xl mix-blend-multiply"
+            })
+          ]
         })
       })
     ]
@@ -1102,17 +1107,25 @@ function KM() {
       z.jsxs("div", {
         className: "relative z-10 mx-auto flex max-w-md flex-col items-center",
         children: [
-          z.jsx(st.div, {
+          z.jsxs(st.div, {
             initial: { opacity: 0, y: 24, scale: 0.98 },
             whileInView: { opacity: 1, y: 0, scale: 1 },
             viewport: { once: !0 },
             transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-            className: "w-full overflow-hidden rounded-[2rem] shadow-[0_20px_50px_rgba(40,30,20,0.14)] ring-1 ring-[rgba(26,24,20,0.08)] bg-[#fffaf4]",
-            children: z.jsx("img", {
-              src: (ft.images && ft.images.lastPage) || "./editable/assets/last-page.png",
-              alt: "With love — Mrs Tanvi Patel, Mr Parthav Patel, Raavika Patel, Aarush Patel",
-              className: "w-full h-auto object-cover block"
-            })
+            className: "relative w-full overflow-hidden rounded-3xl border border-[#1a1814]/10 bg-[#f3ede3] shadow-[0_16px_45px_rgba(40,30,20,0.06)]",
+            children: [
+              z.jsx("img", {
+                src: (ft.images && ft.images.lastPage) || "./editable/assets/last-page.png",
+                alt: "With love — Dr Tanvi Patel, Dr Parthav Patel, Raavika Patel, Aarush Patel",
+                className: "w-full h-auto object-cover block mix-blend-multiply"
+              }),
+              z.jsx("div", {
+                className: "pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#f3ede3] to-transparent z-[2]"
+              }),
+              z.jsx("div", {
+                className: "pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#f3ede3] to-transparent z-[2]"
+              })
+            ]
           }),
           z.jsxs("div", {
             className: "mt-8 flex flex-col items-center gap-3",
