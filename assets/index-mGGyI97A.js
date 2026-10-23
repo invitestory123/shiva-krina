@@ -29,6 +29,7 @@ const ft = {
   bride: _WD_COUPLE.bride ?? "Krina",
   groom: _WD_COUPLE.groom ?? "Shivam",
   brideFull: _WD_COUPLE.brideFull ?? "Dr Krina Morabia",
+  groomFull: _WD_COUPLE.groomFull ?? "Dr Shivam Mehta",
   brideParents: _WD_COUPLE.brideParents ?? "Daughter of Mrs Jyoti Morabia & Mr Nitin Morabia",
   groomParents: _WD_COUPLE.groomParents ?? "Son of Mrs Sharvari Mehta & Mr Amul Mehta",
   groomDegree: _WD_COUPLE.groomDegree ?? "(MD Radiology)",
@@ -820,9 +821,10 @@ function DM() {
                 className: "rounded-2xl border border-[#1a1814]/10 bg-white/50 p-6 backdrop-blur-sm shadow-[0_10px_30px_rgba(40,30,20,0.04)]",
                 children: [
                   z.jsxs("p", {
-                    className: "font-script text-3xl sm:text-4xl text-[#1a1814] flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1",
+                    className: "font-script text-3xl sm:text-4xl text-[#1a1814] flex flex-wrap items-baseline justify-center gap-2",
                     children: [
                       z.jsx("span", { children: ft.groomFull }),
+                      " ",
                       z.jsx("span", {
                         className: "font-display text-base sm:text-lg text-[#6e6256] font-normal tracking-wide",
                         children: ft.groomDegree || "(MD Radiology)"
@@ -838,9 +840,10 @@ function DM() {
                 className: "rounded-2xl border border-[#1a1814]/10 bg-white/50 p-6 backdrop-blur-sm shadow-[0_10px_30px_rgba(40,30,20,0.04)]",
                 children: [
                   z.jsxs("p", {
-                    className: "font-script text-3xl sm:text-4xl text-[#1a1814] flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1",
+                    className: "font-script text-3xl sm:text-4xl text-[#1a1814] flex flex-wrap items-baseline justify-center gap-2",
                     children: [
                       z.jsx("span", { children: ft.brideFull }),
+                      " ",
                       z.jsx("span", {
                         className: "font-display text-base sm:text-lg text-[#6e6256] font-normal tracking-wide",
                         children: ft.brideDegree || "(MD Radiology)"
