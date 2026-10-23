@@ -12,8 +12,10 @@ window.WEDDING_DATA = {
     bridePrefix: "Dr",
     groomFull: "Dr Shivam Mehta",
     brideFull: "Dr Krina Morabia",
-    groomParents: "Son of Mr Amul Mehta & Mrs Sharvari Mehta",
-    brideParents: "Daughter of Mr Nitin Morabia & Mrs Jyoti Morabia",
+    groomParents: "Son of Mrs Sharvari Mehta & Mr Amul Mehta",
+    brideParents: "Daughter of Mrs Jyoti Morabia & Mr Nitin Morabia",
+    groomDegree: "(MD Radiology)",
+    brideDegree: "(MD Radiology)",
     side: "Groom Side",
     sideTitle: "Mehta Family",
     heroParents: "Mrs Sharvari Mehta and Mr Amul Mehta together with Mehta family",
@@ -25,8 +27,8 @@ window.WEDDING_DATA = {
   family: {
     blessings: {
       badge: "✨ With the Blessings of",
-      names: "Mr Niranjan Mehta & Mrs Asha Mehta",
-      relation: "Grandfather & Grandmother of the Groom"
+      names: "Mrs Asha Mehta & Mr Niranjan Mehta",
+      relation: "Grandmother & Grandfather of the Groom"
     }
   },
 

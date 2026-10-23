@@ -29,9 +29,10 @@ const ft = {
   bride: _WD_COUPLE.bride ?? "Krina",
   groom: _WD_COUPLE.groom ?? "Shivam",
   brideFull: _WD_COUPLE.brideFull ?? "Dr Krina Morabia",
-  groomFull: _WD_COUPLE.groomFull ?? "Dr Shivam Mehta",
-  brideParents: _WD_COUPLE.brideParents ?? "Daughter of Mr Nitin Morabia & Mrs Jyoti Morabia",
-  groomParents: _WD_COUPLE.groomParents ?? "Son of Mr Amul Mehta & Mrs Sharvari Mehta",
+  brideParents: _WD_COUPLE.brideParents ?? "Daughter of Mrs Jyoti Morabia & Mr Nitin Morabia",
+  groomParents: _WD_COUPLE.groomParents ?? "Son of Mrs Sharvari Mehta & Mr Amul Mehta",
+  groomDegree: _WD_COUPLE.groomDegree ?? "(MD Radiology)",
+  brideDegree: _WD_COUPLE.brideDegree ?? "(MD Radiology)",
   side: _WD_COUPLE.side ?? "Groom Side",
   heroParents: _WD_COUPLE.heroParents ?? "Mrs Sharvari Mehta and Mr Amul Mehta together with Mehta family",
   heroTagline: _WD_COUPLE.heroTagline ?? "invite you to the wedding reception of",
@@ -664,7 +665,7 @@ function RM() {
         className: "pointer-events-none absolute inset-x-0 top-0 z-[5] h-36 bg-gradient-to-b from-[#f3ede3] to-transparent"
       }),
       z.jsx(st.div, {
-        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(7svh,3.8rem)] text-center",
+        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-14 sm:pt-20 text-center",
         style: { y, opacity: p },
         children: z.jsxs("div", {
           className: "flex w-full flex-col items-center will-change-transform",
@@ -672,26 +673,26 @@ function RM() {
           children: [
             // Ganesh Shloka at the top of everything
             z.jsx("p", {
-              className: "font-display text-xs sm:text-sm tracking-[0.32em] text-[#8a7a68] font-medium mb-2.5",
+              className: "font-display text-xs sm:text-sm tracking-[0.34em] text-[#8a7a68] font-medium mb-3 sm:mb-4",
               children: "॥ श्री गणेशाय नमः ॥"
             }),
             // Parents invitation
             z.jsx("p", {
-              className: "font-display text-[12px] sm:text-[13px] tracking-[0.16em] uppercase text-[#3d342c] font-medium leading-relaxed max-w-sm mx-auto",
+              className: "font-display text-[11px] sm:text-[13px] tracking-[0.18em] uppercase text-[#3d342c] font-medium leading-relaxed max-w-sm mx-auto",
               children: "Mrs Sharvari Mehta & Mr Amul Mehta"
             }),
             z.jsx("p", {
-              className: "mt-0.5 font-display text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[#7a6d60] leading-relaxed",
+              className: "mt-1 font-display text-[10px] sm:text-[11px] tracking-[0.24em] uppercase text-[#7a6d60] leading-relaxed",
               children: "together with Mehta family"
             }),
             z.jsx("p", {
-              className: "mt-1 font-display text-[10px] sm:text-[11px] tracking-[0.24em] uppercase text-[#8a7a68] italic",
+              className: "mt-1.5 font-display text-[10px] sm:text-[11px] tracking-[0.26em] uppercase text-[#8a7a68] italic",
               children: "invite you to the wedding reception of"
             }),
             // Couple names
             z.jsxs(st.h1, {
-              className: "mt-2 sm:mt-3 font-script leading-[0.95] text-[#1a1814]",
-              style: { fontSize: "clamp(3.2rem, 12.5vw, 5.2rem)" },
+              className: "mt-3 sm:mt-4 font-script leading-[0.98] text-[#1a1814]",
+              style: { fontSize: "clamp(2.4rem, 9.5vw, 4.4rem)" },
               children: [
                 z.jsx("span", {
                   className: "inline-block",
@@ -818,8 +819,17 @@ function DM() {
                 variants: Pc,
                 className: "rounded-2xl border border-[#1a1814]/10 bg-white/50 p-6 backdrop-blur-sm shadow-[0_10px_30px_rgba(40,30,20,0.04)]",
                 children: [
-                  z.jsx("p", { className: "font-script text-3xl sm:text-4xl text-[#1a1814]", children: ft.groomFull }),
-                  z.jsx("p", { className: "mt-1.5 text-[11px] uppercase tracking-[0.24em] text-[#7a6d60]", children: ft.groomParents })
+                  z.jsxs("p", {
+                    className: "font-script text-3xl sm:text-4xl text-[#1a1814] flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1",
+                    children: [
+                      z.jsx("span", { children: ft.groomFull }),
+                      z.jsx("span", {
+                        className: "font-display text-base sm:text-lg text-[#6e6256] font-normal tracking-wide",
+                        children: ft.groomDegree || "(MD Radiology)"
+                      })
+                    ]
+                  }),
+                  z.jsx("p", { className: "mt-2 text-[11px] uppercase tracking-[0.24em] text-[#7a6d60]", children: ft.groomParents })
                 ]
               }),
               z.jsx("div", { className: "flex items-center justify-center my-0.5", children: z.jsx("span", { className: "font-script text-3xl text-[#8a7a68]", children: "&" }) }),
@@ -827,8 +837,17 @@ function DM() {
                 variants: Pc,
                 className: "rounded-2xl border border-[#1a1814]/10 bg-white/50 p-6 backdrop-blur-sm shadow-[0_10px_30px_rgba(40,30,20,0.04)]",
                 children: [
-                  z.jsx("p", { className: "font-script text-3xl sm:text-4xl text-[#1a1814]", children: ft.brideFull }),
-                  z.jsx("p", { className: "mt-1.5 text-[11px] uppercase tracking-[0.24em] text-[#7a6d60]", children: ft.brideParents })
+                  z.jsxs("p", {
+                    className: "font-script text-3xl sm:text-4xl text-[#1a1814] flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1",
+                    children: [
+                      z.jsx("span", { children: ft.brideFull }),
+                      z.jsx("span", {
+                        className: "font-display text-base sm:text-lg text-[#6e6256] font-normal tracking-wide",
+                        children: ft.brideDegree || "(MD Radiology)"
+                      })
+                    ]
+                  }),
+                  z.jsx("p", { className: "mt-2 text-[11px] uppercase tracking-[0.24em] text-[#7a6d60]", children: ft.brideParents })
                 ]
               })
             ]
@@ -983,7 +1002,7 @@ function kM() {
         children: [
           z.jsx("span", {
             className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]",
-            children: "Where & when"
+            children: "Where"
           }),
           z.jsx("h2", {
             className: "font-script text-5xl text-[#1a1814] sm:text-6xl",
