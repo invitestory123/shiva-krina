@@ -33,8 +33,8 @@ const ft = {
   brideParents: _WD_COUPLE.brideParents ?? "Daughter of Mr Nitin Morabia & Mrs Jyoti Morabia",
   groomParents: _WD_COUPLE.groomParents ?? "Son of Mr Amul Mehta & Mrs Sharvari Mehta",
   side: _WD_COUPLE.side ?? "Groom Side",
-  sideTitle: _WD_COUPLE.sideTitle ?? "Mehta Family",
-  heroTagline: _WD_COUPLE.heroTagline ?? "Mehta family welcomes you to the wedding reception of",
+  heroParents: _WD_COUPLE.heroParents ?? "Mrs Sharvari Mehta and Mr Amul Mehta together with Mehta family",
+  heroTagline: _WD_COUPLE.heroTagline ?? "invite you to the wedding reception of",
   hashtag: _WD_COUPLE.hashtag ?? "#ShivamWedsKrina",
   monogram: _WD_COUPLE.monogram ?? "S · K",
   family: _WD_FAMILY,
@@ -71,6 +71,7 @@ const ft = {
     bride: _WD_IMAGES.bride ?? "./editable/assets/layer-04-bride.png",
     bouquet: _WD_IMAGES.bouquet ?? "./editable/assets/layer-05-bouquet.png",
     monogramLogo: _WD_IMAGES.monogramLogo ?? "./editable/assets/ks-monogram.png",
+    receptionCard: _WD_IMAGES.receptionCard ?? "./editable/assets/reception-card.png",
     lastPage: _WD_IMAGES.lastPage ?? "./editable/assets/last-page.png"
   }
 };
@@ -270,16 +271,25 @@ function TM({ onOpening: n, onOpened: a }) {
         animate: l ? { opacity: 0, scale: 0.96, filter: "blur(6px)" } : { opacity: 1, scale: 1, filter: "blur(0px)" },
         transition: { duration: 0.5 },
         children: [
+          z.jsx("img", {
+            src: (ft.images && ft.images.monogramLogo) || "./editable/assets/ks-monogram.png",
+            alt: "KS Monogram",
+            className: "h-auto w-24 sm:w-28 max-w-[120px] object-contain drop-shadow-[0_8px_20px_rgba(205,162,74,0.22)] mb-4"
+          }),
           z.jsx("p", {
             className: "font-display text-[11px] uppercase tracking-[0.42em] text-[#6e6256]",
-            children: "Wedding Invitation · Groom Side"
+            children: "Wedding Reception Invitation"
           }),
           z.jsxs("h2", {
-            className: "mt-4 font-script text-5xl text-[#1a1814] sm:text-6xl",
-            children: [ft.groom, " & ", ft.bride]
+            className: "mt-4 font-script text-5xl leading-[1.08] text-[#1a1814] sm:text-6xl flex flex-col items-center",
+            children: [
+              z.jsx("span", { children: ft.groom }),
+              z.jsx("span", { className: "font-script text-3xl sm:text-4xl text-[#8a7a68] my-0.5", children: "&" }),
+              z.jsx("span", { children: ft.bride })
+            ]
           }),
           z.jsx("p", {
-            className: "mt-3 max-w-xs font-display text-base italic leading-relaxed text-[#5c5146]",
+            className: "mt-4 max-w-xs font-display text-base italic leading-relaxed text-[#5c5146]",
             children: "Open gently — celebrations await"
           }),
           z.jsxs("button", {
@@ -658,13 +668,28 @@ function RM() {
           className: "flex w-full flex-col items-center will-change-transform",
           style: S.title,
           children: [
-            z.jsx(st.p, {
-              className: "font-display text-[11px] uppercase text-[#6e6256] tracking-[0.28em] max-w-sm mx-auto leading-relaxed",
-              children: ft.heroTagline || "Mehta family welcomes you to the wedding reception of"
+            // Ganesh Shloka at the top of everything
+            z.jsx("p", {
+              className: "font-display text-xs sm:text-sm tracking-[0.32em] text-[#8a7a68] font-medium mb-2.5",
+              children: "॥ श्री गणेशाय नमः ॥"
             }),
+            // Parents invitation
+            z.jsx("p", {
+              className: "font-display text-[12px] sm:text-[13px] tracking-[0.16em] uppercase text-[#3d342c] font-medium leading-relaxed max-w-sm mx-auto",
+              children: "Mrs Sharvari Mehta & Mr Amul Mehta"
+            }),
+            z.jsx("p", {
+              className: "mt-0.5 font-display text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-[#7a6d60] leading-relaxed",
+              children: "together with Mehta family"
+            }),
+            z.jsx("p", {
+              className: "mt-1 font-display text-[10px] sm:text-[11px] tracking-[0.24em] uppercase text-[#8a7a68] italic",
+              children: "invite you to the wedding reception of"
+            }),
+            // Couple names
             z.jsxs(st.h1, {
-              className: "mt-4 font-script leading-[0.95] text-[#1a1814]",
-              style: { fontSize: "clamp(3.4rem, 14vw, 5.6rem)" },
+              className: "mt-2 sm:mt-3 font-script leading-[0.95] text-[#1a1814]",
+              style: { fontSize: "clamp(3.2rem, 12.5vw, 5.2rem)" },
               children: [
                 z.jsx("span", {
                   className: "inline-block",
@@ -679,31 +704,26 @@ function RM() {
                   children: ft.bride
                 })
               ]
-            }),
-            z.jsx("div", {
-              className: "mt-5 h-px w-28 origin-center bg-gradient-to-r from-transparent via-[#1a1814]/35 to-transparent"
-            }),
-            z.jsx("p", {
-              className: "mt-4 font-display text-lg tracking-wide text-[#3d342c] sm:text-xl",
-              children: ft.dateLabel
-            }),
-            z.jsx("p", {
-              className: "mt-1 text-[11px] uppercase tracking-[0.32em] text-[#7a6d60]",
-              children: `${ft.destination} · ${ft.timeLabel}`
             })
           ]
         })
       }),
       z.jsxs(st.button, {
         type: "button",
-        onClick: () => window.scrollTo({ top: window.innerHeight * 0.85, behavior: "smooth" }),
-        className: "relative z-10 mb-8 flex flex-col items-center gap-2 text-[#7a6d60] transition-colors hover:text-[#1a1814]",
-        "aria-label": "Scroll to invitation details",
+        onClick: () => window.scrollTo({ top: window.innerHeight * 0.9, behavior: "smooth" }),
+        className: "relative z-10 mb-6 sm:mb-8 flex flex-col items-center gap-1.5 transition-transform duration-300 hover:scale-105 active:scale-95",
+        "aria-label": "Scroll down to explore invitation",
         children: [
-          z.jsx("span", { className: "text-[10px] uppercase tracking-[0.38em]", children: "Scroll" }),
-          z.jsx("span", {
-            className: "block h-8 w-px bg-gradient-to-b from-[#1a1814]/45 to-transparent",
-            style: { animation: "scroll-pulse 2.2s ease-in-out infinite" }
+          z.jsxs("span", {
+            className: "inline-flex items-center gap-2 rounded-full border border-[#1a1814]/20 bg-[#fffaf4]/90 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.3em] text-[#1a1814] shadow-[0_8px_20px_rgba(40,30,20,0.08)] backdrop-blur-md",
+            children: [
+              "Scroll down to explore",
+              z.jsx(st.span, {
+                animate: { y: [0, 4, 0] },
+                transition: { duration: 1.4, repeat: 1 / 0, ease: "easeInOut" },
+                children: "↓"
+              })
+            ]
           })
         ]
       })
@@ -748,7 +768,7 @@ const Pc = {
 function DM() {
   const n = ft.verse.text.split(" ");
   return z.jsxs("section", {
-    className: "relative overflow-hidden px-6 py-28",
+    className: "relative overflow-hidden px-6 py-16 sm:py-20",
     children: [
       z.jsx("div", {
         className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1a1814]/12 to-transparent"
@@ -761,15 +781,8 @@ function DM() {
       z.jsxs(zn, {
         className: "mx-auto flex max-w-lg flex-col items-center text-center",
         children: [
-          z.jsx("p", {
-            className: "font-display text-lg tracking-[0.25em] text-[#8a7a68] font-medium",
-            children: ft.verse.arabic
-          }),
-          z.jsx("div", {
-            className: "mt-6 h-px w-20 origin-center bg-[#1a1814]/20"
-          }),
           z.jsx(u0, {
-            className: "mt-8 flex flex-wrap justify-center gap-x-1.5 gap-y-1",
+            className: "flex flex-wrap justify-center gap-x-1.5 gap-y-1",
             stagger: 0.035,
             children: n.map((a, l) =>
               z.jsx(
@@ -928,166 +941,26 @@ function NM() {
 }
 
 function VM() {
-  const events = ft.events || [];
   return z.jsxs("section", {
-    className: "relative overflow-hidden px-6 py-24",
+    className: "relative overflow-hidden px-4 py-12 sm:px-6 sm:py-16",
     children: [
-      z.jsx(dh, {
-        speed: 0.18,
-        className: "pointer-events-none absolute -left-10 top-24 opacity-[0.06]",
-        children: z.jsx("img", {
-          src: ft.images.couple,
-          alt: "",
-          className: "w-56 -scale-x-100 sm:w-72"
-        })
-      }),
-      z.jsxs(zn, {
-        className: "mb-12 flex flex-col items-center gap-3 text-center",
-        children: [
-          z.jsx("span", {
-            className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]",
-            children: ft.eventsBadge || "Ceremonies & Festivities"
-          }),
-          z.jsx("h2", {
-            className: "font-script text-5xl text-[#1a1814] sm:text-6xl",
-            children: ft.eventsTitle || "Wedding Celebrations"
-          }),
-          z.jsx("div", {
-            className: "h-px w-24 bg-gradient-to-r from-transparent via-[#1a1814]/25 to-transparent"
-          })
-        ]
-      }),
-      // Event cards list
       z.jsx("div", {
-        className: "relative mx-auto max-w-lg flex flex-col gap-8",
-        children: events.map((ev, idx) =>
-          z.jsx(zn, {
-            key: ev.name + idx,
-            delay: idx * 0.05,
-            children: z.jsxs(st.div, {
-              whileHover: { y: -5 },
-              transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-              className: "relative overflow-hidden rounded-[2rem] bg-[#fffaf4]/75 px-6 pb-9 pt-10 text-center shadow-[0_24px_65px_rgba(60,45,30,0.08)] ring-1 ring-[rgba(26,24,20,0.08)] backdrop-blur-sm",
-              children: [
-                z.jsx("div", { className: "pointer-events-none absolute inset-3 rounded-[1.55rem] ring-1 ring-[rgba(26,24,20,0.06)]" }),
-                z.jsx("span", {
-                  "aria-hidden": !0,
-                  className: "pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100",
-                  style: { animation: "dress-shimmer 4.5s ease-in-out infinite" }
-                }),
-                // Day & Date Pill
-                z.jsx("p", {
-                  className: "text-[10px] uppercase tracking-[0.38em] text-[#8a7a68] font-medium",
-                  children: `${ev.dayLabel} · ${ev.date}`
-                }),
-                // Event Title
-                z.jsx("h3", {
-                  className: "mt-2 font-script text-4xl sm:text-5xl text-[#1a1814]",
-                  children: ev.name
-                }),
-                z.jsx("div", { className: "mx-auto mt-4 h-px w-16 bg-[#1a1814]/15" }),
-                // Time & Venue
-                z.jsx("p", {
-                  className: "mt-5 font-display text-2xl text-[#1a1814]",
-                  children: ev.time
-                }),
-                z.jsxs("p", {
-                  className: "mt-2 flex items-center justify-center gap-1.5 text-sm tracking-wide text-[#5c5146]",
-                  children: [
-                    z.jsx(qM, { size: 14, className: "text-[#8a7a68] shrink-0" }),
-                    ev.venue
-                  ]
-                }),
-                // Event Note
-                ev.note && z.jsx("p", {
-                  className: "mx-auto mt-4 max-w-sm font-display text-base italic leading-relaxed text-[#6e6256]",
-                  children: ev.note
-                }),
-                // With Love From (e.g. Sangeet)
-                ev.withLove && z.jsx("div", {
-                  className: "mt-5 rounded-xl border border-[#1a1814]/10 bg-white/50 p-3.5 text-xs tracking-wider text-[#7a6d60]",
-                  children: ev.withLove
-                }),
-                // Mameru Elders
-                ev.elders && z.jsxs("div", {
-                  className: "mt-5 rounded-xl border border-[#1a1814]/10 bg-white/50 p-4 text-xs text-[#7a6d60] flex flex-col gap-2",
-                  children: ev.elders.map((el, ei) =>
-                    z.jsxs("div", {
-                      key: ei,
-                      className: "flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5",
-                      children: [
-                        z.jsx("span", { className: "font-display text-sm font-medium text-[#2c261f]", children: el.names }),
-                        z.jsx("span", { className: "text-[10px] uppercase tracking-wider text-[#8a7a68]", children: el.relation })
-                      ]
-                    })
-                  )
-                }),
-                // Little ones note (e.g. Hastmelap)
-                ev.littleOnes && z.jsx("div", {
-                  className: "mt-5 rounded-xl border border-[#1a1814]/10 bg-white/50 p-3.5 text-xs tracking-wider text-[#7a6d60]",
-                  children: ev.littleOnes
-                })
-              ]
-            })
-          })
-        )
+        className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1a1814]/12 to-transparent"
       }),
-      // Schedule Timeline ("The Day Unfolds")
-      z.jsxs("div", {
-        className: "relative mx-auto mt-16 max-w-md",
-        children: [
-          z.jsx("p", {
-            className: "mb-7 text-center text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]",
-            children: "Schedule of Celebrations"
-          }),
-          z.jsxs("div", {
-            className: "relative",
-            children: [
-              z.jsx(st.div, {
-                className: "absolute bottom-2 left-[5px] top-2 w-px origin-top bg-gradient-to-b from-[#1a1814]/30 via-[#1a1814]/15 to-transparent",
-                initial: { scaleY: 0 },
-                whileInView: { scaleY: 1 },
-                viewport: { once: !0 },
-                transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] }
-              }),
-              z.jsx("div", {
-                className: "flex flex-col gap-6",
-                children: ft.program.map((o, u) =>
-                  z.jsxs(st.div, {
-                    key: o.name + u,
-                    initial: { opacity: 0, x: -16 },
-                    whileInView: { opacity: 1, x: 0 },
-                    viewport: { once: !0, margin: "-40px" },
-                    transition: { delay: 0.15 + u * 0.08, duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-                    whileHover: { x: 4 },
-                    className: "flex cursor-default items-start gap-4 pl-1",
-                    children: [
-                      z.jsx(st.span, {
-                        className: "mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#1a1814]/70 ring-4 ring-[#f3ede3]",
-                        initial: { scale: 0 },
-                        whileInView: { scale: 1 },
-                        viewport: { once: !0 },
-                        transition: { delay: 0.2 + u * 0.08, type: "spring", stiffness: 320, damping: 18 }
-                      }),
-                      z.jsxs("div", {
-                        className: "flex flex-1 items-baseline justify-between gap-3",
-                        children: [
-                          z.jsxs("div", {
-                            children: [
-                              z.jsx("p", { className: "font-display text-lg text-[#2c261f]", children: o.name }),
-                              o.venue && z.jsx("p", { className: "text-xs text-[#8a7a68]", children: o.venue })
-                            ]
-                          }),
-                          z.jsx("p", { className: "shrink-0 text-[11px] uppercase tracking-[0.18em] text-[#7a6d60]", children: o.time })
-                        ]
-                      })
-                    ]
-                  })
-                )
-              })
-            ]
+      z.jsx("div", {
+        className: "relative z-10 mx-auto max-w-md flex flex-col items-center",
+        children: z.jsx(st.div, {
+          initial: { opacity: 0, y: 24, scale: 0.98 },
+          whileInView: { opacity: 1, y: 0, scale: 1 },
+          viewport: { once: !0 },
+          transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+          className: "w-full overflow-hidden rounded-[2rem] shadow-[0_20px_50px_rgba(40,30,20,0.14)] ring-1 ring-[rgba(26,24,20,0.08)] bg-[#fffaf4]",
+          children: z.jsx("img", {
+            src: (ft.images && ft.images.receptionCard) || "./editable/assets/reception-card.png",
+            alt: "The Royal Reception — Saturday, 28 November 2026",
+            className: "w-full h-auto object-cover block"
           })
-        ]
+        })
       })
     ]
   });

@@ -16,7 +16,8 @@ window.WEDDING_DATA = {
     brideParents: "Daughter of Mr Nitin Morabia & Mrs Jyoti Morabia",
     side: "Groom Side",
     sideTitle: "Mehta Family",
-    heroTagline: "Mehta family welcomes you to the wedding reception of",
+    heroParents: "Mrs Sharvari Mehta and Mr Amul Mehta together with Mehta family",
+    heroTagline: "invite you to the wedding reception of",
     hashtag: "#ShivamWedsKrina",
     monogram: "S · K",
   },
@@ -103,6 +104,7 @@ window.WEDDING_DATA = {
     bouquet: "./editable/assets/layer-05-bouquet.png",
     heroComposite: "./editable/assets/hero-composite.jpg",
     monogramLogo: "./editable/assets/ks-monogram.png",
+    receptionCard: "./editable/assets/reception-card.png",
     lastPage: "./editable/assets/last-page.png",
   },
 };
