@@ -443,6 +443,7 @@ function AM({ count: n = 14 }) {
   );
   return z.jsx("div", {
     className: "pointer-events-none fixed inset-0 z-[35] overflow-hidden",
+    style: { zIndex: 35, pointerEvents: "none" },
     "aria-hidden": !0,
     children: a.map(l =>
       z.jsx(
@@ -453,7 +454,8 @@ function AM({ count: n = 14 }) {
             left: `${l.left}%`,
             width: l.size,
             height: l.size * 1.35,
-            opacity: l.opacity,
+            opacity: 0.36 + (l.id % 5) * 0.08,
+            boxShadow: "0 2px 6px rgba(26,24,20,0.22)",
             animation: `petal-fall ${l.duration}s linear ${l.delay}s infinite`,
             "--drift": `${l.drift}px`,
             "--spin": `${l.rotate}deg`
@@ -1259,7 +1261,6 @@ function ZM() {
     children: [
       z.jsx(QM, {}),
       z.jsx(MusicPlayer, {}),
-      n === "open" && z.jsx(AM, { count: 16 }),
       z.jsxs(st.div, {
         initial: { scale: 1.04, opacity: 0.92 },
         animate: { scale: n === "closed" ? 1.04 : 1, opacity: 1 },
@@ -1273,6 +1274,7 @@ function ZM() {
           z.jsx(KM, {})
         ]
       }),
+      n === "open" && z.jsx(AM, { count: 20 }),
       z.jsx(u1, {
         children:
           n !== "open" &&
