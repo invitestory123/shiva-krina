@@ -522,7 +522,7 @@ function RM() {
       }),
       z.jsx(MM, { x: a.x, y: a.y }),
       z.jsxs(st.div, {
-        className: "pointer-events-none absolute inset-x-0 bottom-0 top-[34%] sm:top-[28%] z-[1] mx-auto w-full max-w-[440px] sm:max-w-[480px]",
+        className: "pointer-events-none absolute inset-x-0 bottom-0 top-[16%] z-[1] mx-auto w-full max-w-[440px] sm:max-w-[480px]",
         style: { y: f, scale: h, opacity: d },
         children: [
           z.jsx("div", {
@@ -652,19 +652,19 @@ function RM() {
         className: "pointer-events-none absolute inset-x-0 top-0 z-[5] h-36 bg-gradient-to-b from-[#f3ede3] to-transparent"
       }),
       z.jsx(st.div, {
-        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(7svh,3.8rem)] text-center",
+        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(10svh,5.5rem)] text-center",
         style: { y, opacity: p },
         children: z.jsxs("div", {
           className: "flex w-full flex-col items-center will-change-transform",
           style: S.title,
           children: [
             z.jsx(st.p, {
-              className: "font-display text-[10px] sm:text-[11px] uppercase text-[#6e6256] tracking-[0.26em] max-w-sm mx-auto leading-relaxed",
+              className: "font-display text-[11px] uppercase text-[#6e6256] tracking-[0.28em] max-w-sm mx-auto leading-relaxed",
               children: ft.heroTagline || "Mehta family welcomes you to the wedding reception of"
             }),
             z.jsxs(st.h1, {
-              className: "mt-3 font-script leading-[0.95] text-[#1a1814]",
-              style: { fontSize: "clamp(3rem, 12vw, 5rem)" },
+              className: "mt-4 font-script leading-[0.95] text-[#1a1814]",
+              style: { fontSize: "clamp(3.4rem, 14vw, 5.6rem)" },
               children: [
                 z.jsx("span", {
                   className: "inline-block",
@@ -681,14 +681,14 @@ function RM() {
               ]
             }),
             z.jsx("div", {
-              className: "mt-4 h-px w-24 origin-center bg-gradient-to-r from-transparent via-[#1a1814]/35 to-transparent"
+              className: "mt-5 h-px w-28 origin-center bg-gradient-to-r from-transparent via-[#1a1814]/35 to-transparent"
             }),
             z.jsx("p", {
-              className: "mt-3 font-display text-base tracking-wide text-[#3d342c] sm:text-lg",
+              className: "mt-4 font-display text-lg tracking-wide text-[#3d342c] sm:text-xl",
               children: ft.dateLabel
             }),
             z.jsx("p", {
-              className: "mt-1 text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-[#7a6d60]",
+              className: "mt-1 text-[11px] uppercase tracking-[0.32em] text-[#7a6d60]",
               children: `${ft.destination} · ${ft.timeLabel}`
             })
           ]
